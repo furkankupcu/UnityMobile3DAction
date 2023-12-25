@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour
         if(playerInput.GetHorizontalInput() !=0 || playerInput.GetVerticalInput() != 0)
         {
             playerChildTransform.rotation = Quaternion.LookRotation(GetNewVelocity());
-            
         }
     }
 
