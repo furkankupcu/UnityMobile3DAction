@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
         _inputVector = InputHandler();
         Attack();
     }
@@ -77,7 +78,8 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit = GunRaycast.SendRaycast(bulletSpawnPoint, _currentWeapon.range, enemyLayerMask);
 
         if (hit.collider != null )
-        {   
+        {
+            Debug.Log(hit.collider.tag);
             Debug.DrawLine(bulletSpawnPoint.position, hit.point, Color.green);
         }
     }
