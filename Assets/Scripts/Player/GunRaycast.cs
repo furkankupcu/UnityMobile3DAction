@@ -17,4 +17,17 @@ public class GunRaycast : MonoBehaviour
 
     public void DisableLineRenderer() => _lineRenderer.enabled = false;
 
+    public void SetLineRenderer(Vector3 firstPoint, Vector3 lastPoint)
+    {
+        // --Opt
+        _lineRenderer.SetPosition(0, firstPoint);
+        _lineRenderer.SetPosition(1, lastPoint);
+    }
+
+    public IEnumerator Laser()
+    {
+        EnableLineRenderer();
+        yield return new WaitForSeconds(0.05f);
+        DisableLineRenderer();
+    }
 }

@@ -79,8 +79,9 @@ public class PlayerController : MonoBehaviour
 
         if (hit.collider != null )
         {
-            Debug.Log(hit.collider.tag);
-            Debug.DrawLine(bulletSpawnPoint.position, hit.point, Color.green);
+            GunRaycast.SetLineRenderer(bulletSpawnPoint.position, hit.point);
+            StartCoroutine(GunRaycast.Laser());
+            //Debug.DrawLine(bulletSpawnPoint.position, hit.point, Color.green);
         }
     }
 }
