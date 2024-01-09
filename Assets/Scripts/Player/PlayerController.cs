@@ -20,14 +20,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Transform playerChildTransform;
 
-    //Gun
-    [SerializeField] SO_Weapon _currentWeapon;
+    //Weapon
     [SerializeField] Transform bulletSpawnPoint;
     [SerializeField] float gunRange;
     int enemyLayerMask;
-
-    
-    
 
     private void Awake()
     {
@@ -75,13 +71,12 @@ public class PlayerController : MonoBehaviour
     private void Attack()
     {
         Debug.Log("Attack");
-        RaycastHit hit = GunRaycast.SendRaycast(bulletSpawnPoint, _currentWeapon.range, enemyLayerMask);
+        RaycastHit hit = GunRaycast.SendRaycast(bulletSpawnPoint, enemyLayerMask);
 
         if (hit.collider != null )
         {
             GunRaycast.SetLineRenderer(bulletSpawnPoint.position, hit.point);
             StartCoroutine(GunRaycast.Laser());
-            //Debug.DrawLine(bulletSpawnPoint.position, hit.point, Color.green);
         }
     }
 }

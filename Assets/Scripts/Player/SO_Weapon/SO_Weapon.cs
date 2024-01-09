@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "Weapon", order = 51)]
@@ -9,4 +10,5 @@ public class SO_Weapon : ScriptableObject
     public int damage;
     public float fireRate;
     public int range;
+    public GameObject muzzle;
 }

@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class GunRaycast : MonoBehaviour
 {
+    [SerializeField] SO_Weapon _currentWeapon;
+
     [SerializeField] LineRenderer _lineRenderer;
 
-    public RaycastHit SendRaycast(Transform spawnPoint, float range, int gunMask)
+    public RaycastHit SendRaycast(Transform spawnPoint, int gunMask)
     {
         Ray ray = new Ray(spawnPoint.position, spawnPoint.forward);
-        return Physics.Raycast(ray, out RaycastHit hit, range, gunMask) ? hit : default;
+        return Physics.Raycast(ray, out RaycastHit hit, _currentWeapon.range, gunMask) ? hit : default;
     }
 
     public void EnableLineRenderer() => _lineRenderer.enabled = true;
@@ -30,4 +32,6 @@ public class GunRaycast : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
         DisableLineRenderer();
     }
+
+    private void LoadWeaponData(SO_Weapon _newWeapon) => _currentWeapon = _newWeapon; //Will be updated with inventory. 
 }
