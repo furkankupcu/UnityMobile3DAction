@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : Component
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T instance;
 
@@ -13,6 +13,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
             if (instance == null)
             {
                 instance = (T)FindAnyObjectByType(typeof(T));
+
                 if (instance == null)
                 {
                     SetupInstance();
@@ -42,7 +43,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
 
     private void RemoveDuplicates()
     {
-        if (instance != null)
+        if (instance == null)
         {
             instance = this as T;
             DontDestroyOnLoad(gameObject);
@@ -52,6 +53,4 @@ public class Singleton<T> : MonoBehaviour where T : Component
             Destroy(gameObject);
         }
     }
-
-
 }

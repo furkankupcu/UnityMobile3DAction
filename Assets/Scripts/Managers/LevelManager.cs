@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    [SerializeField] GameObject[] caves;  //Procedural Generation
+    [SerializeField] private GameObject[] caves;  //Procedural Generation
 }

@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
         _inputVector = InputHandler();
         Attack();
     }
@@ -64,7 +63,6 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
-        Debug.Log("Attack");
         RaycastHit hit = GunRaycast.SendRaycast();
 
         if (hit.collider != null )

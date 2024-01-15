@@ -13,6 +13,16 @@ public class SpawnManager : Singleton<SpawnManager>
     private SO_Weapon selectedWeapon;
     int _randomLevel;
 
+    private void Update()
+    {
+        Debug.Log("Spawn");
+    }
+
+    private void Start()
+    {
+        GetRandomWeapon();
+    }
+
     public SO_Weapon GetRandomWeapon()
     {
         _randomLevel = Random.Range(0, 3);
@@ -38,7 +48,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public void SpawnObject()
     {
-        
+        var gameObj = Instantiate(GetRandomWeapon());
     }
 
     private void GetUniqueId()
@@ -48,6 +58,6 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private int SelectNumberWithArraySize(SO_Weapon[] arr)
     {
-        return Random.Range(0, arr.Length);
+        return Random.Range(0, arr.Length - 1);
     }
 }

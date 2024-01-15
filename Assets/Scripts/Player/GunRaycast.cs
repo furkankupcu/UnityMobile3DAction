@@ -38,7 +38,8 @@ public class GunRaycast : MonoBehaviour
     public IEnumerator Laser()
     {
         EnableLineRenderer();
-        yield return new WaitForSeconds(0.05f);
+        Debug.Log("Hit");
+        yield return new WaitForSeconds(0.1f);
         DisableLineRenderer();
     }
 
