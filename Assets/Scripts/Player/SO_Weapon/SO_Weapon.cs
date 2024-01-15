@@ -4,9 +4,8 @@ using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "Weapon", order = 51)]
-public class SO_Weapon : ScriptableObject
-{
-    public string weaponName;
+public class SO_Weapon : SO_Item { 
+
     public int damage;
     public float fireRate;
     public int range;

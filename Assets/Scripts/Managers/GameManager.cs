@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-   
+
+    private float dropChance;
+    private int mapLevel;
+    private int levelDifficulty;
+
+
 }

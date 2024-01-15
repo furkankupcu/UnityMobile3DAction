@@ -9,20 +9,29 @@ public class GunRaycast : MonoBehaviour
 
     [SerializeField] LineRenderer _lineRenderer;
 
-    public RaycastHit SendRaycast(Transform spawnPoint, int gunMask)
+    [SerializeField] Transform _bulletSpawnPoint;
+
+    int _enemyLayerMask;
+
+    private void Awake()
     {
-        Ray ray = new Ray(spawnPoint.position, spawnPoint.forward);
-        return Physics.Raycast(ray, out RaycastHit hit, _currentWeapon.range, gunMask) ? hit : default;
+        _enemyLayerMask = 1 << LayerMask.NameToLayer("Enemy");
+    }
+
+    public RaycastHit SendRaycast()
+    {
+        Ray ray = new Ray(_bulletSpawnPoint.position, _bulletSpawnPoint.forward);
+        return Physics.Raycast(ray, out RaycastHit hit, _currentWeapon.range, _enemyLayerMask) ? hit : default;
     }
 
     public void EnableLineRenderer() => _lineRenderer.enabled = true;
 
     public void DisableLineRenderer() => _lineRenderer.enabled = false;
 
-    public void SetLineRenderer(Vector3 firstPoint, Vector3 lastPoint)
+    public void SetLineRenderer(Vector3 lastPoint)
     {
         // --Opt
-        _lineRenderer.SetPosition(0, firstPoint);
+        _lineRenderer.SetPosition(0, _bulletSpawnPoint.position);
         _lineRenderer.SetPosition(1, lastPoint);
     }
 

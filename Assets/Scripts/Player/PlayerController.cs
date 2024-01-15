@@ -20,14 +20,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Transform playerChildTransform;
 
-    //Weapon
-    [SerializeField] Transform bulletSpawnPoint;
-    [SerializeField] float gunRange;
-    int enemyLayerMask;
-
     private void Awake()
     {
-        enemyLayerMask = 1 << LayerMask.NameToLayer("Enemy");
         playerRigidbody = GetComponent<Rigidbody>();
     }
 
@@ -71,11 +65,11 @@ public class PlayerController : MonoBehaviour
     private void Attack()
     {
         Debug.Log("Attack");
-        RaycastHit hit = GunRaycast.SendRaycast(bulletSpawnPoint, enemyLayerMask);
+        RaycastHit hit = GunRaycast.SendRaycast();
 
         if (hit.collider != null )
         {
-            GunRaycast.SetLineRenderer(bulletSpawnPoint.position, hit.point);
+            GunRaycast.SetLineRenderer(hit.point);
             StartCoroutine(GunRaycast.Laser());
         }
     }
