@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Windows;
+using Zenject;
 
 public class PlayerController : MonoBehaviour
 {
+    [Inject]
+    AudioManager audioManager;
+
     //[SerializeField] AnimationController animationController;
     [SerializeField] PlayerInput PlayerInput;
     [SerializeField] GunRaycast GunRaycast;
@@ -23,6 +27,11 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        audioManager.PlayZenAudio();
     }
 
     private void FixedUpdate()
@@ -71,4 +80,6 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(GunRaycast.Laser());
         }
     }
+
+
 }
